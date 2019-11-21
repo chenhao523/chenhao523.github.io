@@ -2,16 +2,40 @@
   <body>
     <h1>我叫<span id="myname"></span>.</h1>
     <p><span>我的学号是<span id="mynumber"></span></p>
+    <a id="btn" href="login.html">去登录</a>
     <img src="matrix.png"/>
     <img id="logo" src="1.jpg" style="border-radius: 10px 20px 40px 80px"/>
     <script src="jquery-3.4.1.js"></script>
     <script>
       $(function(){
-        $.get("./data.json",function(result){
+        var callback = function(result){
           $("#myname").text(result.myname);
           $("#mynumber").text(result.mynumber);
-        });
+        }
+        
+        $.ajax({
+          type:"POST",
+          xhrFields:{
+              withCredentials:true
+          },
+          url:"http://127.0.0.1:8585/userinfo",
+          contentType:"application/json",
+          data:JSON.stringify({"stunum":"18002090102"}),
+          success:callback
+        })
+        $.post("http://127.0.0.1:8585/userinfo",{"stunum":"18002090102"},callback);
+        // $.get("./data.json",function(result){
+        //   $("#myname").text(result.myname);
+        //   $("#mynumber").text(result.mynumber);
+        // });
       })
+      $("#btn").click(function(){
+        $.post("http://127.0.0.1:8585/userinfo",function(result){
+          $("#myname").text(result.myname);
+          $("#mynumber").text(result.mynumber);
+        })
+      })
+      
     </script>
   </body>
 </html>
