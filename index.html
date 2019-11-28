@@ -12,7 +12,6 @@
           $("#myname").text(result.myname);
           $("#mynumber").text(result.mynumber);
         }
-        
         $.ajax({
           type:"POST",
           xhrFields:{
@@ -23,18 +22,18 @@
           data:JSON.stringify({"stunum":"18002090102"}),
           success:callback
         })
-        $.post("http://127.0.0.1:8585/userinfo",{"stunum":"18002090102"},callback);
+        // $.post("http://127.0.0.1:8585/userinfo",{"stunum":"18002090102"},callback);
         // $.get("./data.json",function(result){
         //   $("#myname").text(result.myname);
         //   $("#mynumber").text(result.mynumber);
         // });
       })
-      $("#btn").click(function(){
-        $.post("http://127.0.0.1:8585/userinfo",function(result){
-          $("#myname").text(result.myname);
-          $("#mynumber").text(result.mynumber);
-        })
-      })
+      // $("#btn").click(function(){
+      //   $.post("http://127.0.0.1:8585/userinfo",function(result){
+      //     $("#myname").text(result.myname);
+      //     $("#mynumber").text(result.mynumber);
+      //   })
+      // })
       
     </script>
   </body>
